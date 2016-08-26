@@ -5,11 +5,9 @@ import Input from './input'
 class List extends Component {
 
   renderListItems() {
-    console.log('CALLED RENDER LIST', this.props.list);
-    return this.props.list.map((listItem) => {
-      console.log('LIST ITEM', listItem);
+    return this.props.list.map((listItem, index) => {
       return (
-        <li>
+        <li key={index}>
         {listItem}
         </li>
       )

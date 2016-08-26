@@ -7,7 +7,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_ITEM:
-    state.list.push(action.payload);
+    state = { list: [action.payload, ...state.list] }
     break;
   }
   return state

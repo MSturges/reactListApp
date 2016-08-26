@@ -29610,13 +29610,15 @@
 	
 	  switch (action.type) {
 	    case _types.ADD_ITEM:
-	      state.list.push(action.payload);
+	      state = { list: [action.payload].concat(_toConsumableArray(state.list)) };
 	      break;
 	  }
 	  return state;
 	};
 	
 	var _types = __webpack_require__(267);
+	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 	
 	var initialState = {
 	  list: []
@@ -29762,12 +29764,10 @@
 	  _createClass(List, [{
 	    key: 'renderListItems',
 	    value: function renderListItems() {
-	      console.log('CALLED RENDER LIST', this.props.list);
-	      return this.props.list.map(function (listItem) {
-	        console.log('LIST ITEM', listItem);
+	      return this.props.list.map(function (listItem, index) {
 	        return _react2.default.createElement(
 	          'li',
-	          null,
+	          { key: index },
 	          listItem
 	        );
 	      });
@@ -29781,7 +29781,7 @@
 	        _react2.default.createElement(
 	          'ul',
 	          null,
-	          this.renderListItems
+	          this.renderListItems()
 	        ),
 	        _react2.default.createElement(
 	          'div',
